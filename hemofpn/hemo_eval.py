@@ -16,7 +16,7 @@ class HemorrhageAssessment:
 
         # Load Hemobox model (for blood mask)
         self.hemobox_model = Model("FPN", "resnet34", in_channels=3, out_classes=1)
-        self.hemobox_model.load_from_checkpoint(checkpoint_path=hemobox_checkpoint_path,
+        self.hemobox_model = Model.load_from_checkpoint(checkpoint_path=hemobox_checkpoint_path,
                                                 arch="FPN",
                                                 encoder_name="resnet34",
                                                 in_channels=3,
@@ -194,7 +194,7 @@ if __name__ == "__main__":
         hemobox_checkpoint_path=hemobox_checkpoint_path,
         mask2former_model_id=mask2former_model_id,
         zero_outside_bbox=True,  # Toggle to control blood mask zeroing outside bbox
-        results_dir="/notebooks/triage/hemofpn/data_f8/train_sample/results"
+        results_dir="/notebooks/triage/hemofpn/data_f8/train_sample/results3"
     )
 
     hemorrhage_assessment.process_directory(image_dir)
